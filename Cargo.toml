@@ -1,0 +1,27 @@
+[package]
+name = "scanner-button"
+version = "0.1.0"
+authors = ["Shuhao Tan <johnmave126@gmail.com>"]
+edition = "2021"
+license = "GPL-2.0-only"
+description = "Listen on a Canon multi-function printer for scan button press, and execute specified command."
+keywords = ["cli", "printer", "scanner", "canon"]
+categories = ["command-line-utilities"]
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+[workspace]
+
+[dependencies]
+anyhow = "1.0.68"
+async-stream = "0.3.3"
+bjnp = { path = "./bjnp" }
+clap = { version = "4.1.1", features = ["derive"] }
+gethostname = "0.4.1"
+log = "0.4.17"
+network-interface = "0.1.6"
+owo-colors = { version = "3.5.0", features = ["supports-colors"] }
+pretty-hex = "0.3.0"
+stderrlog = "0.5.4"
+time = { version = "0.3.17", features = ["local-offset"] }
+tokio = { version = "1.24.2", features = ["net", "rt", "macros", "time"] }
+tokio-stream = { version = "0.1.11", features = ["net"] }

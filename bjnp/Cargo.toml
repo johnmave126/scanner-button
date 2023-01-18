@@ -1,0 +1,11 @@
+[package]
+name = "bjnp"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+memoffset = "0.8.0"
+thiserror = "1.0.38"
+time = { version = "0.3.17", features = ["formatting", "macros", "parsing"] }
