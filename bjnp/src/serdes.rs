@@ -256,6 +256,11 @@ pub(crate) fn deserialized_into<T, U: From<T>>((obj, size): (T, usize)) -> (U, u
 
 pub trait SizedDeserialize: Sized {
     const SIZE: usize;
+    /// Deserialize from a buffer using consuming exact [`Self::SIZE`] bytes.
+    ///
+    /// # Safety
+    /// The function assumes the size of `buffer` is at least [`Self::SIZE`].
+    /// Caller must ensure that `buffer` is adequate.
     unsafe fn deserialize_exact(buffer: &[u8]) -> Result<Self, FormatError>;
 }
 
@@ -271,7 +276,7 @@ where
                 actual: buffer.len(),
             })
         } else {
-            unsafe { Ok((T::deserialize_exact(&buffer)?, T::SIZE)) }
+            unsafe { Ok((T::deserialize_exact(buffer)?, T::SIZE)) }
         }
     }
 }

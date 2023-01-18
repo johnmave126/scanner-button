@@ -93,7 +93,7 @@ impl From<&Header> for RawHeader {
             magic: MAGIC.to_owned(),
             packet_type: header.packet_type as u8,
             payload_type: header.payload_type as u8,
-            error: header.error as u8,
+            error: header.error,
             unk_1: 0,
             sequence: header.sequence.to_be_bytes(),
             job_id: header

@@ -26,7 +26,7 @@ impl Channel {
         const IPV6_ANY: IpAddr = IpAddr::V6(Ipv6Addr::new(0, 0, 0, 0, 0, 0, 0, 0));
 
         let local_ip = if addr.is_ipv4() { IPV4_ANY } else { IPV6_ANY };
-        let local = SocketAddr::new(local_ip.into(), 0);
+        let local = SocketAddr::new(local_ip, 0);
         let socket = UdpSocket::bind(local)
             .await
             .with_context(|| format!("couldn't bind to {local}"))?;

@@ -48,7 +48,7 @@ impl Deserialize for Response {
         use FormatError::*;
         use ParseError::*;
 
-        let identity_len = buffer.get(..2).ok_or_else(|| UnexpectedEnd {
+        let identity_len = buffer.get(..2).ok_or(UnexpectedEnd {
             expected: 2,
             actual: buffer.len(),
         })?;

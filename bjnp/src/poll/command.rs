@@ -63,7 +63,7 @@ impl Host {
             // 2. prev_len contains exactly 3 characters in range, so guaranteed to fit
             // "..."
             while cur_len > u16_buffer.len() - 3 {
-                cur_len -= (prev_len & 0xFF) as usize;
+                cur_len -= (prev_len & 0b0000_0011) as usize;
                 prev_len >>= 2;
             }
             u16_buffer[cur_len..cur_len + 3].fill('.' as u16);
@@ -201,7 +201,7 @@ impl Deserialize for Command {
     fn deserialize(buffer: &[u8]) -> Result<(Self, usize), ParseError> {
         use PollType::*;
 
-        let poll_type = buffer.get(0..2).ok_or_else(|| ParseError::UnexpectedEnd {
+        let poll_type = buffer.get(0..2).ok_or(ParseError::UnexpectedEnd {
             expected: 2,
             actual: buffer.len(),
         })?;

@@ -146,7 +146,7 @@ impl Listener {
 
         self.session_id = resp
             .session_id()
-            .ok_or(anyhow!("unexpected interrupt during first poll"))?;
+            .ok_or_else(|| anyhow!("unexpected interrupt during first poll"))?;
 
         Ok(())
     }

@@ -87,7 +87,7 @@ fn broadcast_scan(
 
     set.spawn({
         let name = interface.name.clone();
-        let ifaddr = interface.addr.unwrap().clone();
+        let ifaddr = interface.addr.unwrap();
 
         async move {
             // create socket

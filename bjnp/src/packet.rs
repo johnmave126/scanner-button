@@ -163,7 +163,7 @@ impl<'buf> PacketHeaderOnly<'buf> {
         let payload =
             buffer
                 .get(offset..offset + payload_size)
-                .ok_or_else(|| ParseError::UnexpectedEnd {
+                .ok_or(ParseError::UnexpectedEnd {
                     expected: offset + payload_size,
                     actual: buffer.len(),
                 })?;
